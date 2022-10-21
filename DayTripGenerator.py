@@ -25,6 +25,7 @@
 # function should do just one thing!
 
 from random import random
+from unittest import skip
 
 
 destinations = ["Chicago", "Minneapolis", "Portland", "Savannah"]
@@ -34,41 +35,55 @@ entertainment = ["Boat Tour", "Jazz Club", "Basketball Game", "Shopping"]
 
 import random
 
+trip_1 = []
+
+def greeting():
+    print("Hello, here is a quick trip we put together for you!")
+
 
 def select_location():
    location = random.choice(destinations)
+   trip_1.append(location)
    print(f"Destination: {location}")
 
 
 def select_restaurant():
     food = random.choice(restaurants)
+    trip_1.append(food)
     print(f"Restaurant: {food}")
 
 
 def select_mode_of_transportation():
     vehicle = random.choice(mode_of_transportation)
+    trip_1.append(vehicle)
     print(f"Transportation: {vehicle}")
 
 def select_entertainment():
     fun = random.choice(entertainment)
+    trip_1.append(fun)
     print(f"Entertainment: {fun} ")
 
-def store_first_randomized():
-    print("hmm")
-
 def randomize_my_options():
+    greeting()
     select_location()
     select_restaurant()
     select_mode_of_transportation()
     select_entertainment()
 
+def repeat_trip_back():
+    print("Destination: " + trip_1[0])
+    print("Restaurant: " + trip_1[1])
+    print("Transportation: " + trip_1[2])
+    print("Entertainment: " + trip_1[3])
+
 def satisfy_client():
     satisfied = False 
     while satisfied is False:
-        answer = input("Do these options sound good to you? Y/N ") 
+        answer = input("Do these options sound good? Y/N ") 
         if answer == "Y":
             satisfied = True
-            print("That was easy! Enjoy your trip!")
+            print("That was easy! Here's your final trip!")
+            repeat_trip_back()
             break  
         if answer == "N":
             choose_a_different_option()
@@ -78,7 +93,23 @@ def satisfy_client():
             
 
 def choose_a_different_option():
-    print("working on this later")
+    re_select = input('''Which aspect are you not satisfied with? 
+Destination/Restaurant/Transportation/Entertainment? ''')
+    if re_select == "Destination":
+        print("Perhaps you'd like to travel somewhere else?")
+        is_dupe = True
+        while is_dupe is True:
+            location = random.choice(destinations)
+            if location == trip_1[0]:
+                is_dupe = True
+            else:
+                location_2 = input("how about " + location + "? Y/N ")
+                if location_2 == "Y":
+                    print("Perfect, here's your final trip!")
+                    trip_1[0] = location
+                    repeat_trip_back()
+
+
 
 
 def lets_go_on_a_trip():
@@ -90,11 +121,7 @@ lets_go_on_a_trip()
 
 
 
-# re_select = input('''Which aspect are you not satisfied with? 
-# Destination/Restaurant/Transportation/Entertainment? ''')
-#             if re_select == "Destination":
-#                 print("Here's the only other place available")
-#                 select_location()
+
 
 
 
