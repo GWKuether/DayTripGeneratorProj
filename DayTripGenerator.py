@@ -36,14 +36,17 @@ entertainment = ["Boat Tour", "Jazz Club", "Basketball Game", "Shopping"]
 import random
 
 trip_1 = []
+dest_storage = []
 
 def greeting():
-    print("Hello, here is a quick trip we put together for you!")
+    name = input("What is your name? ")
+    print(F"Hello {name}, here is a quick trip we put together for you!")
 
 
 def select_location():
    location = random.choice(destinations)
    trip_1.append(location)
+   dest_storage.append(location)
    print(f"Destination: {location}")
 
 
@@ -95,22 +98,87 @@ def satisfy_client():
 def choose_a_different_option():
     re_select = input('''Which aspect are you not satisfied with? 
 Destination/Restaurant/Transportation/Entertainment? ''')
+# put in a loop here
     if re_select == "Destination":
-        print("Perhaps you'd like to travel somewhere else?")
-        is_dupe = True
-        while is_dupe is True:
-            location = random.choice(destinations)
-            if location == trip_1[0]:
-                is_dupe = True
+        exhaust_destinations()
+    elif re_select == "Restaurant":
+        exhaust_restaurants()
+    elif re_select == "Transportation":
+        exhaust_transportation()
+    elif re_select == "Entertainment":
+        exhaust_entertainment()
+    else:
+        print("I'm not sure what you mean by that! Let's try again.")
+
+
+def exhaust_destinations():
+    print("Perhaps you'd like to travel somewhere else?")
+    is_dupe = True
+    while is_dupe is True:
+        location = random.choice(destinations)
+        if location == trip_1[0]:
+            is_dupe = True
+        else:
+            answer_2 = input("how about " + location + "? Y/N ")
+            dest_storage.append(location)
+            if answer_2 == "Y":
+                print("Perfect, here's your final trip!")
+                trip_1[0] = location
+                is_dupe = False
+                repeat_trip_back()
+                break
             else:
-                location_2 = input("how about " + location + "? Y/N ")
-                if location_2 == "Y":
-                    print("Perfect, here's your final trip!")
-                    trip_1[0] = location
-                    repeat_trip_back()
+                is_dupe_2 = True
+                while is_dupe_2 is True:
+                    location_2 = random.choice(destinations)
+                    if location_2 == dest_storage[0]:
+                        is_dupe_2 = True
+                    elif location_2 == dest_storage[1]:
+                        is_dupe_2 = True
+                    else: 
+                        answer_3 = input("how about " + location_2 + "? Y/N ")
+                        dest_storage.append(location_2)
+                        if answer_3 == "Y":
+                            print("Perfect, here's your final trip!")
+                            trip_1[0] = location_2
+                            is_dupe = False
+                            is_dupe_2 = False
+                            repeat_trip_back()
+                            break
+                        else:
+                            is_dupe_3 = True
+                            while is_dupe_3 is True:
+                                location_3 = random.choice(destinations)
+                                if location_3 == dest_storage[0]:
+                                    is_dupe_3 = True
+                                elif location_3 == dest_storage[1]:
+                                    is_dupe_3 = True
+                                elif location_3 == dest_storage[2]:
+                                    is_dupe_3 = True
+                                else:
+                                    answer_4 = input("how about " + location_3 + "? Y/N ")
+                                    dest_storage.append(location_3)
+                                    if answer_4 == "Y":
+                                        print("Perfect, here's your final trip!")
+                                        trip_1[0] = location_3
+                                        is_dupe = False
+                                        is_dupe_2 = False
+                                        is_dupe_3 = False
+                                        repeat_trip_back()
+                                        break
+                                    else:
+                                        choose_your_destination = input("I'm sorry, those are all of the locations we had on sale. If you would like to go somewhere else, please type it in: ")
+                                        trip_1[0] = choose_your_destination
+                                        print("Okay, here's the final trip!")
+                                        is_dupe = False
+                                        is_dupe_2 = False
+                                        is_dupe_3 = False
+                                        repeat_trip_back()
+                                        break
 
 
 
+# add loop backs if user input is not correct
 
 def lets_go_on_a_trip():
     randomize_my_options()
