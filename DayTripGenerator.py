@@ -38,6 +38,7 @@ import random
 trip_1 = []
 dest_storage = []
 
+
 def greeting():
     name = input("What is your name? ")
     print(F"Hello {name}, here is a quick trip we put together for you!")
@@ -82,7 +83,8 @@ def repeat_trip_back():
 def satisfy_client():
     satisfied = False 
     while satisfied is False:
-        answer = input("Do these options sound good? Y/N ") 
+        answer = input("Do these options sound good? Y/N ")
+        answer = answer.upper()
         if answer == "Y":
             satisfied = True
             print("That was easy! Here's your final trip!")
@@ -110,6 +112,8 @@ Destination/Restaurant/Transportation/Entertainment? ''')
     else:
         print("I'm not sure what you mean by that! Let's try again.")
 
+def re_start_ex_dest():
+    exhaust_destinations()
 
 def exhaust_destinations():
     print("Perhaps you'd like to travel somewhere else?")
@@ -120,6 +124,7 @@ def exhaust_destinations():
             is_dupe = True
         else:
             answer_2 = input("how about " + location + "? Y/N ")
+            answer_2 = answer_2.upper()
             dest_storage.append(location)
             if answer_2 == "Y":
                 print("Perfect, here's your final trip!")
@@ -127,7 +132,7 @@ def exhaust_destinations():
                 is_dupe = False
                 repeat_trip_back()
                 break
-            else:
+            elif answer_2 == "N":
                 is_dupe_2 = True
                 while is_dupe_2 is True:
                     location_2 = random.choice(destinations)
@@ -135,8 +140,9 @@ def exhaust_destinations():
                         is_dupe_2 = True
                     elif location_2 == dest_storage[1]:
                         is_dupe_2 = True
-                    else: 
+                    else:
                         answer_3 = input("how about " + location_2 + "? Y/N ")
+                        answer_3 = answer_3.upper()
                         dest_storage.append(location_2)
                         if answer_3 == "Y":
                             print("Perfect, here's your final trip!")
@@ -145,7 +151,7 @@ def exhaust_destinations():
                             is_dupe_2 = False
                             repeat_trip_back()
                             break
-                        else:
+                        elif answer_3 == "N":
                             is_dupe_3 = True
                             while is_dupe_3 is True:
                                 location_3 = random.choice(destinations)
@@ -157,6 +163,7 @@ def exhaust_destinations():
                                     is_dupe_3 = True
                                 else:
                                     answer_4 = input("how about " + location_3 + "? Y/N ")
+                                    answer_4 = answer_4.upper()
                                     dest_storage.append(location_3)
                                     if answer_4 == "Y":
                                         print("Perfect, here's your final trip!")
@@ -166,7 +173,7 @@ def exhaust_destinations():
                                         is_dupe_3 = False
                                         repeat_trip_back()
                                         break
-                                    else:
+                                    elif answer_4 == "N":
                                         choose_your_destination = input("I'm sorry, those are all of the locations we had on sale. If you would like to go somewhere else, please type it in: ")
                                         trip_1[0] = choose_your_destination
                                         print("Okay, here's the final trip!")
@@ -175,8 +182,27 @@ def exhaust_destinations():
                                         is_dupe_3 = False
                                         repeat_trip_back()
                                         break
-
-
+                                    else:
+                                        print("I'm not sure what you mean by that, please try again.")
+                                        dest_storage.pop(3)
+                                        dest_storage.pop(2)
+                                        dest_storage.pop(1)
+                                        re_start_ex_dest()
+                                        is_dupe = False
+                                        break     
+                        else:
+                            print("I'm not sure what you mean by that, please try again.")
+                            dest_storage.pop(2)
+                            dest_storage.pop(1)
+                            re_start_ex_dest()
+                            is_dupe = False
+                            break                       
+            else:
+                print("I'm not sure what you mean by that, please try again.")
+                dest_storage.pop(1)
+                re_start_ex_dest()
+                is_dupe = False
+                break     
 
 # add loop backs if user input is not correct
 
