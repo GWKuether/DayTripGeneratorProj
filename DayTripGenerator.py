@@ -25,8 +25,6 @@
 # function should do just one thing!
 
 from random import random
-from unittest import skip
-
 
 destinations = ["Chicago", "Minneapolis", "Portland", "Savannah"]
 restaurants = ["Taco Bell", "Burger King", "Subway", "Starbucks"]
@@ -143,13 +141,14 @@ def exhaust_destinations():
                 is_dupe = False
                 is_dupe_2 = False
                 is_dupe_3 = False
+                dest_storage.pop(1)
                 repeat_trip_back()
                 break
             elif answer_2 == "N":
                 is_dupe_2 = True
                 while is_dupe_2 is True:
                     location_2 = random.choice(destinations)
-                    if location_2 == dest_storage[0]:
+                    if location_2 == trip_1[0]:
                         is_dupe_2 = True
                     elif location_2 == dest_storage[1]:
                         is_dupe_2 = True
@@ -163,13 +162,15 @@ def exhaust_destinations():
                             is_dupe = False
                             is_dupe_2 = False
                             is_dupe_3 = False
+                            dest_storage.pop(2)
+                            dest_storage.pop(1)
                             repeat_trip_back()
                             break
                         elif answer_3 == "N":
                             is_dupe_3 = True
                             while is_dupe_3 is True:
                                 location_3 = random.choice(destinations)
-                                if location_3 == dest_storage[0]:
+                                if location_3 == trip_1[0]:
                                     is_dupe_3 = True
                                 elif location_3 == dest_storage[1]:
                                     is_dupe_3 = True
@@ -185,6 +186,9 @@ def exhaust_destinations():
                                         is_dupe = False
                                         is_dupe_2 = False
                                         is_dupe_3 = False
+                                        dest_storage.pop(3)
+                                        dest_storage.pop(2)
+                                        dest_storage.pop(1)
                                         repeat_trip_back()
                                         break
                                     elif answer_4 == "N":
@@ -194,6 +198,9 @@ def exhaust_destinations():
                                         is_dupe = False
                                         is_dupe_2 = False
                                         is_dupe_3 = False
+                                        dest_storage.pop(3)
+                                        dest_storage.pop(2)
+                                        dest_storage.pop(1)
                                         repeat_trip_back()
                                         break
                                     else:
@@ -244,13 +251,14 @@ def exhaust_restaurants():
                 is_dupe = False
                 is_dupe_2 = False
                 is_dupe_3 = False
+                rest_storage.pop(1)
                 repeat_trip_back()
                 break
             elif answer_2 == "N":
                 is_dupe_2 = True
                 while is_dupe_2 is True:
                     restaurant_2 = random.choice(restaurants)
-                    if restaurant_2 == rest_storage[0]:
+                    if restaurant_2 == trip_1[1]:
                         is_dupe_2 = True
                     elif restaurant_2 == rest_storage[1]:
                         is_dupe_2 = True
@@ -264,13 +272,15 @@ def exhaust_restaurants():
                             is_dupe = False
                             is_dupe_2 = False
                             is_dupe_3 = False
+                            rest_storage.pop(2)
+                            rest_storage.pop(1)
                             repeat_trip_back()
                             break
                         elif answer_3 == "N":
                             is_dupe_3 = True
                             while is_dupe_3 is True:
                                 restaurant_3 = random.choice(restaurants)
-                                if restaurant_3 == rest_storage[0]:
+                                if restaurant_3 == trip_1[1]:
                                     is_dupe_3 = True
                                 elif restaurant_3 == rest_storage[1]:
                                     is_dupe_3 = True
@@ -286,6 +296,9 @@ def exhaust_restaurants():
                                         is_dupe = False
                                         is_dupe_2 = False
                                         is_dupe_3 = False
+                                        rest_storage.pop(3)
+                                        rest_storage.pop(2)
+                                        rest_storage.pop(1)
                                         repeat_trip_back()
                                         break
                                     elif answer_4 == "N":
@@ -295,6 +308,9 @@ def exhaust_restaurants():
                                         is_dupe = False
                                         is_dupe_2 = False
                                         is_dupe_3 = False
+                                        rest_storage.pop(3)
+                                        rest_storage.pop(2)
+                                        rest_storage.pop(1)
                                         repeat_trip_back()
                                         break
                                     else:
@@ -345,13 +361,14 @@ def exhaust_transportation():
                 is_dupe = False
                 is_dupe_2 = False
                 is_dupe_3 = False
+                vehicle_storage.pop(1)
                 repeat_trip_back()
                 break
             elif answer_2 == "N":
                 is_dupe_2 = True
                 while is_dupe_2 is True:
                     vehicle_2 = random.choice(mode_of_transportation)
-                    if vehicle_2 == vehicle_storage[0]:
+                    if vehicle_2 == trip_1[2]:
                         is_dupe_2 = True
                     elif vehicle_2 == vehicle_storage[1]:
                         is_dupe_2 = True
@@ -365,13 +382,15 @@ def exhaust_transportation():
                             is_dupe = False
                             is_dupe_2 = False
                             is_dupe_3 = False
+                            vehicle_storage.pop(2)
+                            vehicle_storage.pop(1)
                             repeat_trip_back()
                             break
                         elif answer_3 == "N":
                             is_dupe_3 = True
                             while is_dupe_3 is True:
                                 vehicle_3 = random.choice(mode_of_transportation)
-                                if vehicle_3 == vehicle_storage[0]:
+                                if vehicle_3 == trip_1[2]:
                                     is_dupe_3 = True
                                 elif vehicle_3 == vehicle_storage[1]:
                                     is_dupe_3 = True
@@ -387,15 +406,21 @@ def exhaust_transportation():
                                         is_dupe = False
                                         is_dupe_2 = False
                                         is_dupe_3 = False
+                                        vehicle_storage.pop(3)
+                                        vehicle_storage.pop(2)
+                                        vehicle_storage.pop(1)
                                         repeat_trip_back()
                                         break
                                     elif answer_4 == "N":
-                                        choose_your_destination = input("I'm sorry, those are all of the vehicles we had on sale. If you would like to travel some other way, please type it in: ")
-                                        trip_1[2] = choose_your_destination
+                                        choose_your_vehicle = input("I'm sorry, those are all of the vehicles we had on sale. If you would like to travel some other way, please type it in: ")
+                                        trip_1[2] = choose_your_vehicle
                                         print("Okay, here's your current trip!")
                                         is_dupe = False
                                         is_dupe_2 = False
                                         is_dupe_3 = False
+                                        vehicle_storage.pop(3)
+                                        vehicle_storage.pop(2)
+                                        vehicle_storage.pop(1)
                                         repeat_trip_back()
                                         break
                                     else:
@@ -434,7 +459,7 @@ def exhaust_entertainment():
     is_dupe = True
     while is_dupe is True:
         fun = random.choice(entertainment)
-        if fun == ent_storage[0]:
+        if fun == trip_1[3]:
             is_dupe = True
         else:
             answer_2 = input("how about " + fun + "? Y/N ")
@@ -446,13 +471,14 @@ def exhaust_entertainment():
                 is_dupe = False
                 is_dupe_2 = False
                 is_dupe_3 = False
+                ent_storage.pop(1)
                 repeat_trip_back()
                 break
             elif answer_2 == "N":
                 is_dupe_2 = True
                 while is_dupe_2 is True:
                     fun_2 = random.choice(entertainment)
-                    if fun_2 == ent_storage[0]:
+                    if fun_2 == trip_1[3]:
                         is_dupe_2 = True
                     elif fun_2 == ent_storage[1]:
                         is_dupe_2 = True
@@ -466,13 +492,15 @@ def exhaust_entertainment():
                             is_dupe = False
                             is_dupe_2 = False
                             is_dupe_3 = False
+                            ent_storage.pop(2)
+                            ent_storage.pop(1)
                             repeat_trip_back()
                             break
                         elif answer_3 == "N":
                             is_dupe_3 = True
                             while is_dupe_3 is True:
                                 fun_3 = random.choice(entertainment)
-                                if fun_3 == ent_storage[0]:
+                                if fun_3 == trip_1[3]:
                                     is_dupe_3 = True
                                 elif fun_3 == ent_storage[1]:
                                     is_dupe_3 = True
@@ -488,6 +516,9 @@ def exhaust_entertainment():
                                         is_dupe = False
                                         is_dupe_2 = False
                                         is_dupe_3 = False
+                                        ent_storage.pop(3)
+                                        ent_storage.pop(2)
+                                        ent_storage.pop(1)
                                         repeat_trip_back()
                                         break
                                     elif answer_4 == "N":
@@ -497,6 +528,9 @@ def exhaust_entertainment():
                                         is_dupe = False
                                         is_dupe_2 = False
                                         is_dupe_3 = False
+                                        ent_storage.pop(3)
+                                        ent_storage.pop(2)
+                                        ent_storage.pop(1)
                                         repeat_trip_back()
                                         break
                                     else:
